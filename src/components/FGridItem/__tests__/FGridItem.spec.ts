@@ -1,10 +1,12 @@
-import { describe, it, expect } from "vitest";
+import { describe, test, expect } from "vitest";
 
 import { mount } from "@vue/test-utils";
 import FGridItem from "../FGridItem.vue";
 
 describe("FGridItem", () => {
-  it("default slot is rendered inside a <div> with default 'grid' and 'grid-cols-12' classes", () => {
+  expect(FGridItem).toBeTruthy();
+
+  test("default slot is rendered inside a <div> with default 'grid' and 'grid-cols-12' classes", () => {
     const wrapper = mount(FGridItem, {
       slots: {
         default: "<div>Test grid item</div>",
@@ -14,7 +16,7 @@ describe("FGridItem", () => {
     expect(wrapper.classes()).toContain("col-span-12");
   });
 
-  it("default slot is rendered with breakpoints class modifiers", () => {
+  test("default slot is rendered with breakpoints class modifiers", () => {
     const wrapper = mount(FGridItem, {
       slots: {
         default: "<div>Test grid item</div>",
