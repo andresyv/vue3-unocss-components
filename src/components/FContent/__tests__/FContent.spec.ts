@@ -6,13 +6,15 @@ import FContent from "../FContent.vue";
 describe("FContent", () => {
   expect(FContent).toBeTruthy();
 
-  test("default slot is rendered inside a <main> tag", () => {
-    const wrapper = mount(FContent, {
-      slots: {
-        default: "Test content",
-      },
-    });
+  describe("Component render #layout #ui", () => {
+    test("default slot is rendered inside a <main> tag", () => {
+      const wrapper = mount(FContent, {
+        slots: {
+          default: "Test content",
+        },
+      });
 
-    expect(wrapper.find("main").text()).toContain("Test content");
+      expect(wrapper.find("main").text()).toContain("Test content");
+    });
   });
 });

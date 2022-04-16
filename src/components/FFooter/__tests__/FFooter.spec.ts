@@ -7,8 +7,10 @@ import FFooter from "../FFooter.vue";
 describe("FFooter", () => {
   expect(FFooter).toBeTruthy();
 
-  test("renders properly", () => {
-    const wrapper = mount(FFooter, { props: { title: "Test footer" } });
-    expect(wrapper.text()).toContain("Test footer");
+  describe("Component render #layout #ui", () => {
+    test("renders properly", () => {
+      const wrapper = mount(FFooter, { props: { title: "Test footer" } });
+      expect(wrapper.text()).toContain("Test footer");
+    });
   });
 });
