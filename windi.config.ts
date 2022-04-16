@@ -1,5 +1,6 @@
 import { defineConfig } from "windicss/helpers";
 import formsPlugin from "windicss/plugin/forms";
+import ratioPlugin from "windicss/plugin/aspect-ratio";
 
 function range(size, startAt = 1) {
   return Array.from(Array(size).keys()).map((i) => i + startAt);
@@ -7,7 +8,7 @@ function range(size, startAt = 1) {
 
 export default defineConfig({
   darkMode: "class",
-  plugins: [formsPlugin],
+  plugins: [formsPlugin, ratioPlugin],
   theme: {
     extend: {
       colors: {
@@ -24,6 +25,45 @@ export default defineConfig({
           300: "#FFA64B",
           400: "#FF9324",
           500: "#FF8100",
+        },
+        secondary: {
+          100: "#AAB9F7",
+          200: "#7C93EF",
+          300: "#5874E7",
+          400: "#3657DD",
+          500: "#1539CE",
+        },
+        warning: {
+          100: "#FFD69B",
+          200: "#FFC570",
+          300: "#FFB64D",
+          400: "#EE9C24",
+          500: "#BD750D",
+        },
+        error: {
+          100: "#FF8F86",
+          200: "#FF685C",
+          300: "#F44436",
+          400: "#D81E0F",
+          500: "#A90F03",
+        },
+        info: {
+          100: "#80D4F8",
+          200: "#29B8F6",
+          300: "#29B8F6",
+          400: "#09ACF2",
+          500: "#0290CD",
+        },
+        success: {
+          100: "#C3E9C5",
+          200: "#94D598",
+          300: "#66BB6C",
+          400: "#3D9B43",
+          500: "#207E26",
+        },
+        dark: {
+          base: "#002233",
+          darkest: "#00141f",
         },
       },
     },
@@ -43,4 +83,9 @@ export default defineConfig({
     range(12).map((i) => `2xl:col-span-${i}`),
     "gap-0 gap-px gap-0.5 gap-1 gap-1.5 gap-2 gap-2.5 gap-3 gap-3.5 gap-4",
   ],
+  shortcuts: {
+    "gradient-to-b": "bg-gradient-to-b from-primary-300 to-secondary-300",
+    "gradient-to-t": "bg-gradient-to-t from-primary-300 to-secondary-300",
+    "gradient-to-r": "bg-gradient-to-r from-primary-300 to-secondary-300",
+  },
 });
