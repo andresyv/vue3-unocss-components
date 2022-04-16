@@ -11,7 +11,7 @@ import FAppLayout from "./components/layouts/FAppLayout.vue";
 
 <style>
 #app {
-  @apply bg-gray-100;
+  @apply bg-gray-100 dark:bg-dark-base dark:text-white;
   font-family: "Montserrat", sans-serif;
 }
 </style>

@@ -4,8 +4,8 @@ import FFooter from "@/components/FFooter/FFooter.vue";
 import FContent from "../FContent/FContent.vue";
 </script>
 <template>
-  <div class="flex flex-col h-screen">
-    <f-app-bar title="My awesome app" fixed variant="transparent" />
+  <div class="flex flex-col">
+    <f-app-bar title="My awesome app" fixed />
     <f-content>
       <slot />
     </f-content>
