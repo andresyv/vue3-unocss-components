@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
   <div class="f-card--image-wrapper" ref="imageRef" :class="wrapperClasses">
     <div
       class="f-card--image"
-      :title="alt"
+      :aria-label="alt"
       :class="imgClasses"
       :style="styles"
     />

@@ -1,15 +1,48 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import FGrid from "@/components/FGrid/FGrid.vue";
 import FGridItem from "@/components/FGridItem/FGridItem.vue";
 import FCard from "../components/FCard/FCard.vue";
 import FButton from "../components/FButton/FButton.vue";
-import FImage from "../components/FImage/FImage.vue";
+import FInput from "../components/FInput/FInput.vue";
+
+import { isRequired, isEmail } from "@/components/utils";
+import FCheckbox from "../components/FCheckbox/FCheckbox.vue";
 
 const imgSrc =
   "https://images.unsplash.com/photo-1646936218493-d206c6284291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
 const imgSrc2 =
   "https://images.unsplash.com/photo-1649044750195-c5d73df24521?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
 const imgSrc3 = "https://images.unsplash.com/photo-1649244451448-797144294226";
+
+const form = ref({
+  email: "",
+  password: "",
+  remember: false,
+});
+
+const emailRules = (value: string) => {
+  if (!isRequired(value)) {
+    return "Email is required";
+  }
+  if (!isEmail(value)) {
+    return "Email must be a valid email";
+  }
+  return true;
+};
+const passwordRules = (value: string) => {
+  if (!isRequired(value)) {
+    return "Password is required";
+  }
+  if (value.length < 5) {
+    return "Password be at least 5 characters long";
+  }
+  return true;
+};
+
+const onSubmit = (form: { email: string; password: string }) => {
+  alert(`Login ${form.email}:${form.password}`);
+};
 </script>
 
 <template>
@@ -17,40 +50,69 @@ const imgSrc3 = "https://images.unsplash.com/photo-1649244451448-797144294226";
     <f-grid-item>
       <h1>Cards</h1>
     </f-grid-item>
-    <f-grid-item :span="12">
-      <f-card :img="imgSrc" title="card test">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus,
-        ligula id rutrum iaculis, libero leo consequat nisi, quis sollicitudin
-        orci augue nec justo.
+    <f-grid-item>
+      <f-card class="max-w-xl mx-auto my-2">
+        <template #header>
+          <img class="w-18 h-18" src="@/assets/logo.svg" alt="Vue Logo" />
+          <div class="pt-5 pb-2">
+            <span class="text-lg font-black">Sign in to Your Account</span>
+          </div>
+        </template>
+        <f-input
+          label="Name"
+          v-model="form.email"
+          placeholder="mail@example.com"
+          :rules="emailRules"
+          name="name"
+          type="email"
+          autocomplete="email"
+        />
+        <f-input
+          label="Password"
+          v-model="form.password"
+          placeholder="*****"
+          name="password"
+          :rules="passwordRules"
+          type="password"
+          autocomplete="password"
+        />
+        <f-checkbox v-model="form.remember" label="Remember me" />
+
+        <div class="flex justify-between mt-10">
+          <a class="text-xs text-info-300 hover:underline" href="#"
+            >Don't have an account?</a
+          >
+          <a class="text-xs text-info-300 hover:underline" href="#"
+            >Forgot your password?</a
+          >
+        </div>
+
         <template #actions>
-          <div class="flex justify-end">
-            <f-button color="primary" block hover>Save</f-button>
+          <div class="flex justify-end mt-2">
+            <f-button color="primary" block @click="onSubmit(form)">
+              Sign In
+            </f-button>
           </div>
         </template>
       </f-card>
     </f-grid-item>
-    <f-grid-item :span="12" :md="6">
-      <f-card :img="imgSrc2" title="card test">
+    <f-grid-item :md="6">
+      <f-card :img="imgSrc" title="card test" :image-height="350">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus,
         ligula id rutrum iaculis, libero leo consequat nisi, quis sollicitudin
         orci augue nec justo.
         <template #actions>
           <div class="flex justify-end">
-            <f-button color="primary" block hover>Save</f-button>
+            <f-button color="success" hover block>Save</f-button>
           </div>
         </template>
       </f-card>
     </f-grid-item>
-    <f-grid-item :span="12" :md="6">
-      <f-card :img="imgSrc3" title="card test">
+    <f-grid-item :md="6">
+      <f-card :img="imgSrc3" title="card test" variant="primary">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus,
         ligula id rutrum iaculis, libero leo consequat nisi, quis sollicitudin
         orci augue nec justo.
-        <template #actions>
-          <div class="flex justify-end">
-            <f-button color="primary" block hover>Save</f-button>
-          </div>
-        </template>
       </f-card>
     </f-grid-item>
   </f-grid>

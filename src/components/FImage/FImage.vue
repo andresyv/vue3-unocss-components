@@ -7,6 +7,8 @@ type Ratio = "auto" | "16/9" | "square";
 const props = defineProps({
   src: { type: String, required: true },
   alt: { type: String, required: true },
+  width: { type: [String, Number], default: 300 },
+  height: { type: [String, Number], default: 300 },
   animated: { type: Boolean, default: false },
   overlay: { type: Boolean, default: false },
   aspectRatio: { type: String as PropType<Ratio>, default: "auto" },
@@ -17,19 +19,23 @@ const wrapperClasses = computed(() => ({
   "aspect-video": props.aspectRatio === "16/9",
   "aspect-square": props.aspectRatio === "square",
 }));
+const styles = computed(() => ({
+  height: typeof props.height === "number" ? `${props.height}px` : props.height,
+  width: typeof props.width === "number" ? `${props.width}px` : props.width,
+}));
 const imgClasses = computed(() => ({
   "f-image--hover-animation": props.animated,
 }));
 </script>
 
 <template>
-  <div class="f-image--wrapper" :class="wrapperClasses">
+  <div class="f-image--wrapper" :style="styles" :class="wrapperClasses">
     <img
-      class="f-image"
+      class="f-image object-fill object-center"
       :class="imgClasses"
+      :style="styles"
       :src="src"
       :alt="alt"
-      aspect-ratio="16/9"
     />
     <div v-if="overlay" class="f-image--overlay"></div>
   </div>

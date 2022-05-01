@@ -1,6 +1,6 @@
 import { defineConfig } from "windicss/helpers";
-import formsPlugin from "windicss/plugin/forms";
 import ratioPlugin from "windicss/plugin/aspect-ratio";
+import typography from "windicss/plugin/typography";
 
 function range(size, startAt = 1) {
   return Array.from(Array(size).keys()).map((i) => i + startAt);
@@ -8,7 +8,7 @@ function range(size, startAt = 1) {
 
 export default defineConfig({
   darkMode: "class",
-  plugins: [formsPlugin, ratioPlugin],
+  plugins: [ratioPlugin, typography],
   theme: {
     extend: {
       colors: {
