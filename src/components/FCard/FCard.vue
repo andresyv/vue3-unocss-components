@@ -2,7 +2,6 @@
 import { computed } from "vue";
 import type { PropType } from "vue";
 import FCardImage from "@/components/FCard/FCardImage.vue";
-import "./FCard.sass";
 
 type FCardVariants = "default" | "primary" | "gradient";
 
@@ -43,3 +42,32 @@ const classes = computed(() => ({
     </div>
   </div>
 </template>
+
+<style lang="sass" scoped>
+.f-card
+  @apply flex flex-col shadow rounded-lg pt-2 pb-2 px-2 bg-white dark:bg-dark-darkest dark:text-white
+.f-card--title
+  @apply font-semibold text-slate-600 capitalize py-3 dark:text-primary-400 px-2
+.f-card--body
+  @apply flex-1 py-4 px-2 dark:text-white prose-sm
+.f-card--actions
+  @apply pt-4 pb-2 px-2
+
+.f-card--primary
+  @apply bg-primary-300
+  .f-card--title
+    @apply text-white
+  .f-card--body
+    @apply text-white
+  .f-card--actions
+    @apply text-white
+
+.f-card--gradient
+  @apply gradient-to-b
+  .f-card--title
+    @apply text-white
+  .f-card--body
+    @apply text-white
+  .f-card--actions
+    @apply text-white
+</style>
