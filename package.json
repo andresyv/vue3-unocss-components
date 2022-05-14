@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
-    "test:unit": "vitest --ui",
+    "test:unit": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress open'",
     "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'",
@@ -44,6 +44,7 @@
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^8.2.0",
+    "flush-promises": "^1.0.2",
     "jsdom": "^19.0.0",
     "prettier": "^2.5.1",
     "sass": "^1.50.0",
@@ -54,6 +55,7 @@
     "vitest": "^0.8.1",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.33.9",
+    "wait-for-expect": "^3.0.2",
     "windicss": "^3.5.1"
   }
 }

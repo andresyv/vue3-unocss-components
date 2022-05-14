@@ -9,8 +9,12 @@ export default defineConfig({
   plugins: [WindiCSS(), vue()],
   test: {
     environment: "jsdom",
+    reporters: "verbose",
     coverage: {
       reporter: ["text", "json", "html"],
+    },
+    deps: {
+      inline: ["vee-validate"],
     },
   },
   resolve: {
