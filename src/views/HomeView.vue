@@ -2,9 +2,10 @@
 import { ref } from "vue";
 import FGrid from "@/components/FGrid/FGrid.vue";
 import FGridItem from "@/components/FGridItem/FGridItem.vue";
-import FCard from "../components/FCard/FCard.vue";
-import FButton from "../components/FButton/FButton.vue";
-import FInput from "../components/FInput/FInput.vue";
+import FCard from "@/components/FCard/FCard.vue";
+import FButton from "@/components/FButton/FButton.vue";
+import FInput from "@/components/FInput/FInput.vue";
+import FForm from "@/components/FForm/FForm.vue";
 
 import { isRequired, isEmail } from "@/components/utils";
 import FCheckbox from "../components/FCheckbox/FCheckbox.vue";
@@ -48,7 +49,7 @@ const onSubmit = (form: { email: string; password: string }) => {
 <template>
   <f-grid>
     <f-grid-item>
-      <h1>Cards</h1>
+      <h1>Forms</h1>
     </f-grid-item>
     <f-grid-item>
       <f-card class="max-w-xl mx-auto my-2">
@@ -58,43 +59,42 @@ const onSubmit = (form: { email: string; password: string }) => {
             <span class="text-lg font-black">Sign in to Your Account</span>
           </div>
         </template>
-        <f-input
-          label="Name"
-          v-model="form.email"
-          placeholder="mail@example.com"
-          :rules="emailRules"
-          name="name"
-          type="email"
-          autocomplete="email"
-        />
-        <f-input
-          label="Password"
-          v-model="form.password"
-          placeholder="*****"
-          name="password"
-          :rules="passwordRules"
-          type="password"
-          autocomplete="password"
-        />
-        <f-checkbox v-model="form.remember" label="Remember me" />
-
-        <div class="flex justify-between mt-10">
-          <a class="text-xs text-info-300 hover:underline" href="#"
-            >Don't have an account?</a
-          >
-          <a class="text-xs text-info-300 hover:underline" href="#"
-            >Forgot your password?</a
-          >
-        </div>
-
-        <template #actions>
-          <div class="flex justify-end mt-2">
-            <f-button color="primary" block @click="onSubmit(form)">
-              Sign In
-            </f-button>
+        <f-form @submit="onSubmit" :initial-values="{ email: 'demo@mail.com' }">
+          <f-input
+            label="Name"
+            v-model="form.email"
+            placeholder="mail@example.com"
+            :rules="emailRules"
+            name="email"
+            type="email"
+            autocomplete="email"
+          />
+          <f-input
+            label="Password"
+            v-model="form.password"
+            placeholder="*****"
+            name="password"
+            :rules="passwordRules"
+            type="password"
+            autocomplete="password"
+          />
+          <f-checkbox v-model="form.remember" label="Remember me" />
+          <div class="flex justify-between mt-10">
+            <a class="text-xs text-info-300 hover:underline" href="#"
+              >Don't have an account?</a
+            >
+            <a class="text-xs text-info-300 hover:underline" href="#"
+              >Forgot your password?</a
+            >
           </div>
-        </template>
+          <div class="mt-10">
+            <f-button color="primary" block type="submit"> Submit </f-button>
+          </div>
+        </f-form>
       </f-card>
+    </f-grid-item>
+    <f-grid-item>
+      <h1>Cards</h1>
     </f-grid-item>
     <f-grid-item :md="6">
       <f-card :img="imgSrc" title="card test" :image-height="350">
