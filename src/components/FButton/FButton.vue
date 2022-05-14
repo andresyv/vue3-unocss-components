@@ -37,7 +37,7 @@ const classes = computed(() => ({
 </script>
 
 <template>
-  <button class="f-button" :class="classes">
+  <button class="f-button" :class="classes" v-bind="$attrs">
     <slot />
   </button>
 </template>
