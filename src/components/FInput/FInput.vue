@@ -53,9 +53,7 @@ const onInput = (event: Event) => {
 </script>
 <template>
   <div class="f-input--wrapper">
-    <span v-if="errorMessage" class="text-error-400 text-xs font-thin mt-2">{{
-      errorMessage
-    }}</span>
+    <span v-if="errorMessage" class="f-input--error">{{ errorMessage }}</span>
     <input
       class="f-input"
       v-model="value"
@@ -74,6 +72,8 @@ const onInput = (event: Event) => {
   @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-8 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-150
 .f-input--label
   @apply font-light text-xs focus:primary-text-300
+.f-input--error
+  @apply text-error-400 text-xs font-light mt-2
 input:focus + label
   @apply text-primary-400 ease-linear transition-all duration-150 font-semibold ease-in
 </style>
