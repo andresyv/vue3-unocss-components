@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import type { PropType } from "vue";
 import { useField } from "vee-validate";
+import { nanoid } from "nanoid";
 
 const props = defineProps({
   modelValue: {
     type: [String, Number],
     default: "",
   },
+  id: { type: String, default: null },
   label: { type: String, default: "" },
   name: { type: String },
   placeholder: { type: String, default: "Type something" },
@@ -18,12 +20,15 @@ const props = defineProps({
   },
 });
 
+const inputId = ref<string>("");
 const emit = defineEmits(["update:modelValue"]);
 const field = props.name ?? "inputField";
 
 const { errorMessage, value, handleChange } = useField(field, props.rules, {
   validateOnValueUpdate: false,
 });
+
+inputId.value = props.id ?? nanoid();
 
 const validationListeners = computed(() => {
   if (!errorMessage.value) {
@@ -55,13 +60,16 @@ const onInput = (event: Event) => {
   <div class="f-input--wrapper">
     <span v-if="errorMessage" class="f-input--error">{{ errorMessage }}</span>
     <input
+      :id="inputId"
       class="f-input"
       v-model="value"
       :placeholder="placeholder"
       v-on="validationListeners"
       v-bind="$attrs"
     />
-    <label v-if="label" class="f-input--label">{{ label }}</label>
+    <label v-if="label" :for="inputId" class="f-input--label">{{
+      label
+    }}</label>
   </div>
 </template>
 
@@ -71,7 +79,7 @@ const onInput = (event: Event) => {
 .f-input
   @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-8 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-150
 .f-input--label
-  @apply font-light text-xs focus:primary-text-300
+  @apply font-light text-xs focus:primary-text-300 focus:text-primary-400
 .f-input--error
   @apply text-error-400 text-xs font-light mt-2
 input:focus + label

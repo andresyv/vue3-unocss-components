@@ -9,6 +9,7 @@ import FForm from "@/components/FForm/FForm.vue";
 
 import { isRequired, isEmail } from "@/components/utils";
 import FCheckbox from "../components/FCheckbox/FCheckbox.vue";
+import FAutocomplete from "../components/FAutocomplete/FAutocomplete.vue";
 
 const imgSrc =
   "https://images.unsplash.com/photo-1646936218493-d206c6284291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -77,6 +78,11 @@ const onSubmit = (form: { email: string; password: string }) => {
             :rules="passwordRules"
             type="password"
             autocomplete="password"
+          />
+          <f-autocomplete
+            placeholder="autocomplete"
+            label="Autocomplete"
+            clearable
           />
           <f-checkbox v-model="form.remember" label="Remember me" />
           <div class="flex justify-between mt-10">
