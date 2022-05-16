@@ -16,6 +16,8 @@ export default defineConfig({
     deps: {
       inline: ["vee-validate"],
     },
+    globals: true,
+    setupFiles: "./src/tests/setup.ts",
   },
   resolve: {
     alias: {
