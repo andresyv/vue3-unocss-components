@@ -91,6 +91,29 @@ const onKeydown = (e: KeyboardEvent) => {
 <template>
   <div class="f-autocomplete--wrapper">
     <div class="relative">
+      <label v-if="label" :for="inputId" class="f-autocomplete--label">{{
+        label
+      }}</label>
+      <input
+        :id="inputId"
+        class="f-autocomplete w-full"
+        v-model="query"
+        ref="autocomplete"
+        placeholder="autocomplete"
+        v-bind="$attrs"
+        @focusin="showSuggestions = true"
+        @focusout="showSuggestions = false"
+        @keydown="onKeydown"
+        @input="onInput"
+      />
+      <button
+        class="absolute w-5 h-5 rounded-full top-1/2 transform translate-y-2 right-3 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+        @click.prevent="query = ''"
+      >
+        <Close v-if="clearable" class="w-4 h-4 text-gray-500 dark:text-white" />
+      </button>
+    </div>
+    <div class="relative">
       <Transition
         enter-active-class="transition-opacity duration-100 ease-out"
         enter-from-class="opacity-0"
@@ -104,7 +127,7 @@ const onKeydown = (e: KeyboardEvent) => {
           class="absolute top-1 bg-white dark:bg-dark-base w-full z-10 rounded shadow-md max-h-48 overflow-y-scroll transition ease-in-out delay-150"
         >
           <li
-            class="text-slate-300 dark:text-white dark:hover:bg-dark-darkest px-4 py-2 cursor-pointer"
+            class="text-slate-600 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-darkest px-4 py-2 cursor-pointer"
             v-for="(suggestion, index) in suggestions"
             :class="{ 'bg-dark-darkest': suggestionIndex === index }"
             :key="`suggestion-${index}`"
@@ -115,33 +138,14 @@ const onKeydown = (e: KeyboardEvent) => {
         </ul>
       </Transition>
     </div>
-    <div class="relative">
-      <input
-        class="f-autocomplete w-full"
-        v-model="query"
-        ref="autocomplete"
-        placeholder="autocomplete"
-        v-bind="$attrs"
-        @focusin="showSuggestions = true"
-        @focusout="showSuggestions = false"
-        @keydown="onKeydown"
-        @input="onInput"
-      />
-      <div
-        class="absolute rounded-full top-1/2 transform -translate-y-1 right-3 cursor-pointer hover:bg-primary-300"
-      >
-        <Close v-if="clearable" class="w-4 h-4" />
-      </div>
-    </div>
-    <label v-if="label" class="f-input--label">{{ label }}</label>
   </div>
 </template>
 
 <style scoped lang="sass">
 .f-autocomplete--wrapper
-  @apply flex flex-col-reverse justify-between align-center my-4 first:mt-0 last:mb-0
+  @apply flex flex-col justify-between align-center my-4 first:mt-0 last:mb-0
 .f-autocomplete
-  @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-8 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-100
+  @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-10 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-100
 .f-autocomplete--label
   @apply font-light text-xs focus:primary-text-300
 input:focus + label
