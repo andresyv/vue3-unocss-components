@@ -5,7 +5,13 @@ import { nanoid } from "nanoid";
 import { Close } from "@vicons/ionicons5";
 import { useField } from "vee-validate";
 
+export type AutoCompleteItem = {
+  label: string;
+  value: unknown;
+};
+
 const props = defineProps({
+  items: { type: Array as PropType<AutoCompleteItem[]>, default: () => [] },
   label: { type: String, default: "" },
   name: { type: String },
   id: { type: String, default: null },
@@ -26,22 +32,6 @@ const autocomplete = ref<HTMLInputElement>();
 const inputId = ref<string>("");
 const suggestionIndex = ref<number>(-1);
 const showSuggestions = ref<boolean>(false);
-const items = [
-  { text: "Valencia", value: 1 },
-  { text: "Castellón", value: 1 },
-  { text: "Alicante", value: 1 },
-  { text: "Badajoz", value: 1 },
-  { text: "Cáceres", value: 1 },
-  { text: "Mérida", value: 1 },
-  { text: "Plasencia", value: 1 },
-  { text: "Salamanca", value: 1 },
-  { text: "Zamora", value: 1 },
-  { text: "León", value: 1 },
-  { text: "Burgos", value: 1 },
-  { text: "Segovia", value: 1 },
-  { text: "Soria", value: 1 },
-  { text: "Palencia", value: 1 },
-];
 
 inputId.value = props.id ?? nanoid();
 
@@ -56,17 +46,17 @@ const {
 
 const suggestions = computed(() => {
   if (query.value) {
-    const filtered = items.filter((item: { text: string; value: number }) =>
-      item.text.toLowerCase().includes(query.value.toLowerCase())
+    const filtered = props.items.filter((item) =>
+      item.label.toLowerCase().includes(query.value.toLowerCase())
     );
     if (filtered.length > props.suggestionsCount) {
       return filtered.slice(0, props.suggestionsCount);
     }
     return filtered;
-  } else if (items.length > props.suggestionsCount) {
-    return items.slice(0, props.suggestionsCount);
+  } else if (props.items.length > props.suggestionsCount) {
+    return props.items.slice(0, props.suggestionsCount);
   } else {
-    return items;
+    return props.items;
   }
 });
 
@@ -112,7 +102,7 @@ const onKeydown = (e: KeyboardEvent) => {
     case "Enter":
       e.preventDefault();
       if (suggestionIndex.value >= 0) {
-        query.value = suggestions.value[suggestionIndex.value].text;
+        query.value = suggestions.value[suggestionIndex.value].label;
         showSuggestions.value = false;
         autocomplete.value?.blur();
         suggestionIndex.value = -1;
@@ -142,6 +132,7 @@ const onKeydown = (e: KeyboardEvent) => {
       }}</label>
       <input
         :id="inputId"
+        type="text"
         class="f-autocomplete w-full"
         v-model="query"
         ref="autocomplete"
@@ -183,9 +174,9 @@ const onKeydown = (e: KeyboardEvent) => {
             v-for="(suggestion, index) in suggestions"
             :class="{ 'bg-dark-darkest': suggestionIndex === index }"
             :key="`suggestion-${index}`"
-            @click="setValue(suggestion.text)"
+            @click="setValue(suggestion.label)"
           >
-            {{ suggestion.text }}
+            {{ suggestion.label }}
           </li>
         </ul>
       </Transition>

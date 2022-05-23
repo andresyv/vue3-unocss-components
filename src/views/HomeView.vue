@@ -43,8 +43,15 @@ const passwordRules = (value: string) => {
 };
 
 const onSubmit = (form: { email: string; password: string; state: string }) => {
-  alert(`Login ${form.email}:${form.password} - ${form.state}`);
+  console.log("Submit", form);
 };
+
+const states = [
+  { label: "Salamanca", value: "Salamanca" },
+  { label: "Valencia", value: "Valencia" },
+  { label: "Madrid", value: "Madrid" },
+  { label: "Barcelona", value: "Barcelona" },
+];
 </script>
 
 <template>
@@ -83,6 +90,7 @@ const onSubmit = (form: { email: string; password: string; state: string }) => {
             name="state"
             placeholder="autocomplete"
             label="Autocomplete"
+            :items="states"
             clearable
           />
           <f-checkbox v-model="form.remember" label="Remember me" />
