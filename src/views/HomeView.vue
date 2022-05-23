@@ -42,8 +42,8 @@ const passwordRules = (value: string) => {
   return true;
 };
 
-const onSubmit = (form: { email: string; password: string }) => {
-  alert(`Login ${form.email}:${form.password}`);
+const onSubmit = (form: { email: string; password: string; state: string }) => {
+  alert(`Login ${form.email}:${form.password} - ${form.state}`);
 };
 </script>
 
@@ -80,6 +80,7 @@ const onSubmit = (form: { email: string; password: string }) => {
             autocomplete="password"
           />
           <f-autocomplete
+            name="state"
             placeholder="autocomplete"
             label="Autocomplete"
             clearable

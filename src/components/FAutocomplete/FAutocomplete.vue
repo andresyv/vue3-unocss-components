@@ -1,16 +1,28 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
+import type { PropType } from "vue";
 import { nanoid } from "nanoid";
 import { Close } from "@vicons/ionicons5";
+import { useField } from "vee-validate";
+
 const props = defineProps({
   label: { type: String, default: "" },
+  name: { type: String },
   id: { type: String, default: null },
   suggestionsCount: { type: Number, default: 3 },
   clearable: { type: Boolean, default: false },
+  rules: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type: Function as PropType<(value: any) => string | boolean>,
+    default: () => true,
+  },
 });
 
+const emit = defineEmits(["update:modelValue"]);
+
+const field = props.name ?? "inputField";
+
 const autocomplete = ref<HTMLInputElement>();
-const query = ref<string>("");
 const inputId = ref<string>("");
 const suggestionIndex = ref<number>(-1);
 const showSuggestions = ref<boolean>(false);
@@ -30,6 +42,18 @@ const items = [
   { text: "Soria", value: 1 },
   { text: "Palencia", value: 1 },
 ];
+
+inputId.value = props.id ?? nanoid();
+
+const {
+  errorMessage,
+  value: query,
+  handleChange,
+  resetField,
+} = useField<string>(field, props.rules, {
+  validateOnValueUpdate: false,
+});
+
 const suggestions = computed(() => {
   if (query.value) {
     const filtered = items.filter((item: { text: string; value: number }) =>
@@ -45,9 +69,31 @@ const suggestions = computed(() => {
     return items;
   }
 });
-inputId.value = props.id ?? nanoid();
 
-const onInput = () => {
+const validationListeners = computed(() => {
+  if (!errorMessage.value) {
+    return {
+      blur: handleChange,
+      change: handleChange,
+      input: (e: Event) => {
+        handleChange(e, false);
+        onInput(e);
+      },
+    };
+  }
+  return {
+    blur: handleChange,
+    change: handleChange,
+    input: (e: Event) => {
+      handleChange(e);
+      onInput(e);
+    },
+  };
+});
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emit("update:modelValue", target.value);
   if (!showSuggestions.value) {
     showSuggestions.value = true;
   }
@@ -105,12 +151,18 @@ const onKeydown = (e: KeyboardEvent) => {
         @focusout="showSuggestions = false"
         @keydown="onKeydown"
         @input="onInput"
+        v-on="validationListeners"
       />
+      <span v-if="errorMessage" class="f-input--error">{{ errorMessage }}</span>
+
       <button
         class="absolute w-5 h-5 rounded-full top-1/2 transform translate-y-2 right-3 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
-        @click.prevent="query = ''"
+        @click.prevent="resetField()"
       >
-        <Close v-if="clearable" class="w-4 h-4 text-gray-500 dark:text-white" />
+        <Close
+          v-if="clearable"
+          class="w-4 h-4 text-gray-500 dark:text-white my-auto"
+        />
       </button>
     </div>
     <div class="relative">
@@ -124,7 +176,7 @@ const onKeydown = (e: KeyboardEvent) => {
       >
         <ul
           v-if="showSuggestions"
-          class="absolute top-1 bg-white dark:bg-dark-base w-full z-10 rounded shadow-md max-h-48 overflow-y-scroll transition ease-in-out delay-150"
+          class="absolute top-1 bg-white dark:bg-dark-base w-full z-10 rounded shadow-md max-h-48 overflow-y-auto transition ease-in-out delay-150"
         >
           <li
             class="text-slate-600 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-darkest px-4 py-2 cursor-pointer"
