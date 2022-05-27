@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import FAppLayout from "./components/layouts/FAppLayout.vue";
 </script>
 
 <template>
-  <f-app-layout>
-    <router-view />
-  </f-app-layout>
+  <router-view v-slot="{ Component, route }">
+    <transition name="slide">
+      <component :is="Component" :key="route" />
+    </transition>
+  </router-view>
 </template>
 
 <style>

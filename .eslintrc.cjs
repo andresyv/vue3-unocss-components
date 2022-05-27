@@ -17,5 +17,11 @@ module.exports = {
       files: ["cypress/integration/**.spec.{js,ts,jsx,tsx}"],
       extends: ["plugin:cypress/recommended"],
     },
+    {
+      rules: {
+        files: ['src/views/**/*.vue'],
+        "vue/multi-word-component-names": 0,
+      },
+    },
   ],
 };

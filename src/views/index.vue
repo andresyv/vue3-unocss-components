@@ -54,6 +54,7 @@ const states = [
 ];
 </script>
 
+
 <template>
   <f-grid>
     <f-grid-item>
@@ -132,3 +133,8 @@ const states = [
     </f-grid-item>
   </f-grid>
 </template>
+
+<route lang="yaml">
+meta:
+  layout: default
+</route>
