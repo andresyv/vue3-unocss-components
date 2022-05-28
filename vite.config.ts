@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from "url";
 import Unocss from "unocss/vite";
-import { presetAttributify, presetUno } from "unocss";
+import { presetAttributify, presetUno, presetIcons } from "unocss";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -11,7 +11,16 @@ import Layouts from "vite-plugin-vue-layouts";
 export default defineConfig({
   plugins: [
     Unocss({
-      presets: [presetUno(), presetAttributify()],
+      presets: [
+        presetUno(),
+        presetAttributify(),
+        presetIcons({
+          prefix: "i-",
+          extraProperties: {
+            display: "inline-block",
+          },
+        }),
+      ],
     }),
     vue(),
     Pages({

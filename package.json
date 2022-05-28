@@ -22,6 +22,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@iconify-json/tabler": "^1.1.13",
     "@peculiar/webcrypto": "^1.4.0",
     "@rushstack/eslint-patch": "^1.1.0",
     "@types/jsdom": "^16.2.14",
