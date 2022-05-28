@@ -41,6 +41,9 @@ const classes = computed(() => ({
     <div>
       <slot />
     </div>
+    <div>
+      <slot name="actions" />
+    </div>
   </nav>
 </template>
 

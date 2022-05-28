@@ -18,6 +18,7 @@ const props = defineProps({
   block: { type: Boolean, default: false },
   outline: { type: Boolean, default: false },
   rounded: { type: Boolean, default: false },
+  icon: { type: Boolean, default: false },
 });
 
 const classes = computed(() => ({
@@ -31,6 +32,7 @@ const classes = computed(() => ({
   "f-button--text": props.text,
   "f-button--outline": props.outline,
   "f-button--rounded": props.rounded,
+  "f-button--icon": props.icon,
   "!shadow-none": props.flat,
   "w-full": props.block,
 }));
@@ -46,7 +48,9 @@ const classes = computed(() => ({
 .f-button {
   --at-apply: "rounded text-sm font-base py-1 px-4 uppercase";
 }
-
+.f-button--icon {
+  --at-apply: "flex justify-center items-center rounded-full !bg-transparent !dark:bg-transparent !dark:hover:bg-dark-darkest !hover:bg-gray-200 !shadow-none !p-2 w-10 h-10";
+}
 .f-button--default {
   --at-apply: "bg-gray-200 hover:bg-gray-300 shadow dark:bg-dark";
 }
@@ -65,26 +69,14 @@ const classes = computed(() => ({
 .f-button--warning {
   --at-apply: "bg-warning-300 hover:bg-warning-400 shadow text-white";
 }
-.f-button--outline {
-  --at-apply: "bg-opacity-10 hover:bg-opacity-20 text-warning-400 shadow-none border border-warning-400";
-}
 .f-button--error {
   --at-apply: "bg-error-300 hover:bg-error-400 shadow text-white";
-}
-.f-button--outline {
-  --at-apply: "bg-opacity-10 hover:bg-opacity-20 text-error-400 shadow-none border border-error-400";
 }
 .f-button--info {
   --at-apply: "bg-info-300 hover:bg-info-400 shadow text-white";
 }
-.f-button--outline {
-  --at-apply: "bg-opacity-10 hover:bg-opacity-20 text-info-400 shadow-none border border-info-400";
-}
 .f-button--success {
   --at-apply: "bg-success-300 hover:bg-success-400 shadow text-white";
-}
-.f-button--outline {
-  --at-apply: "bg-opacity-10 hover:bg-opacity-20 text-success-400 shadow-none border border-success-400";
 }
 .f-button--rounded {
   --at-apply: "rounded-full";
