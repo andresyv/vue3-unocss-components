@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 import type { PropType } from "vue";
 import { nanoid } from "nanoid";
-import { Close } from "@vicons/ionicons5";
+
 import { useField } from "vee-validate";
 
 export type AutoCompleteItem = {

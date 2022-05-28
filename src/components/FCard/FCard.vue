@@ -13,14 +13,21 @@ const props = defineProps({
   variant: { type: String as PropType<FCardVariants>, default: "default" },
 });
 
-const classes = computed(() => ({
-  "f-card--primary": props.variant === "primary",
-  "f-card--gradient": props.variant === "gradient",
-}));
+const classes = computed(() => {
+  const bgVariant: { [key in FCardVariants]: string } = {
+    default: "white",
+    primary: "primary-300",
+    gradient: "gradient-to-b",
+  };
+  return {
+    bg: `${bgVariant[props.variant]} dark:dark-darkest`,
+    text: `${props.variant === "default" ? "slate-500" : "white"}`,
+  };
+});
 </script>
 
 <template>
-  <div class="f-card" :class="classes">
+  <div flex="col" :bg="classes.bg" p="2" shadow rounded-lg>
     <f-card-image
       v-if="img"
       :src="img"
@@ -29,27 +36,21 @@ const classes = computed(() => ({
       overlay
       lazy
     />
-    <div class="f-card--title">
+    <div text="slate-600 dark:primary-400" p="y-3 x-2" font-semibold capitalize>
       <slot name="header">
         {{ title }}
       </slot>
     </div>
-    <div class="f-card--body">
+    <div flex="1" p="y-4 x-2" :text="classes.text">
       <slot />
     </div>
-    <div class="f-card--actions">
+    <div p="t-4 b-2 x-2">
       <slot name="actions" />
     </div>
   </div>
 </template>
 
 <style lang="sass" scoped>
-.f-card
-  @apply flex flex-col shadow rounded-lg pt-2 pb-2 px-2 bg-white dark:bg-dark-darkest dark:text-white
-.f-card--title
-  @apply font-semibold text-slate-600 capitalize py-3 dark:text-primary-400 px-2
-.f-card--body
-  @apply flex-1 py-4 px-2 dark:text-white prose-sm
 .f-card--actions
   @apply pt-4 pb-2 px-2
 

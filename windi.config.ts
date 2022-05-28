@@ -81,6 +81,7 @@ export default defineConfig({
     range(12).map((i) => `lg:col-span-${i}`),
     range(12).map((i) => `xl:col-span-${i}`),
     range(12).map((i) => `2xl:col-span-${i}`),
+    "bg-white bg-primary-300 bg-gradient-to-b",
     "gap-0 gap-px gap-0.5 gap-1 gap-1.5 gap-2 gap-2.5 gap-3 gap-3.5 gap-4",
   ],
   shortcuts: {

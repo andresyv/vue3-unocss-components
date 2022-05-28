@@ -4,7 +4,7 @@
     "env.d.ts",
     "src/**/*",
     "src/**/*.vue"
-  ],
+, "uno-theme.ts"  ],
   "exclude": [
     "src/**/__tests__/*"
   ],

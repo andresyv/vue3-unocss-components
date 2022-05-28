@@ -36,6 +36,7 @@ const classes = computed(() => ({
 
 <template>
   <nav class="f-app-bar" :class="classes">
+    <slot name="icon"></slot>
     <span class="font-semibold text-primary text-lg mr-4">{{ title }}</span>
     <div>
       <slot />
@@ -43,21 +44,31 @@ const classes = computed(() => ({
   </nav>
 </template>
 
-<style lang="sass" scoped>
-.f-app-bar
-  @apply px-4 py-3
-.f-app-bar--fixed
-  @apply fixed top-0 inset-x-0 z-50 h-14 flex justify-between items-center
-.f-app-bar-scrolled
-  @apply shadow-md bg-white dark:bg-dark-darkest text-slate-700 dark:text-white
-.f-app-bar--default
-  @apply bg-white text-slate-700
-.f-app-bar--primary
-  @apply bg-primary-300 text-white
-.f-app-bar--accent
-  @apply bg-accent-300 text-white
-.f-app-bar--transparent
-  @apply bg-transparent dark:bg-transparent
-.f-app-bar--dark
-  @apply bg-[#001b29] text-white
+<style scoped>
+.f-app-bar {
+  --at-apply: "px-4 py-3";
+}
+.f-app-bar--fixed {
+  --at-apply: "fixed top-0 inset-x-0 z-50 h-14 flex justify-between items-center";
+}
+.f-app-bar-scrolled {
+  --at-apply: "shadow-md bg-white dark:bg-dark-darkest text-slate-700 dark:text-white";
+}
+
+.f-app-bar--default {
+  --at-apply: "bg-white text-slate-700";
+}
+
+.f-app-bar--primary {
+  --at-apply: "bg-primary-300 text-white";
+}
+.f-app-bar--accent {
+  --at-apply: "bg-accent-300 text-white";
+}
+.f-app-bar--transparent {
+  --at-apply: "bg-transparent dark:bg-transparent";
+}
+.f-app-bar--dark {
+  --at-apply: "bg-[#001b29] text-white";
+}
 </style>

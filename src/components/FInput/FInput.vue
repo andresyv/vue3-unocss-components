@@ -73,15 +73,20 @@ const onInput = (event: Event) => {
   </div>
 </template>
 
-<style scoped lang="sass">
-.f-input--wrapper
-  @apply flex flex-col-reverse justify-between align-center my-4 first:mt-0 last:mb-0
-.f-input
-  @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-8 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-150
-.f-input--label
-  @apply font-light text-xs focus:primary-text-300 focus:text-primary-400
-.f-input--error
-  @apply text-error-400 text-xs font-light mt-2
-input:focus + label
-  @apply text-primary-400 ease-linear transition-all duration-150 font-semibold ease-in
+<style scoped>
+.f-input--wrapper {
+  --at-apply: "flex flex-col-reverse justify-between align-center my-4 first:mt-0 last:mb-0";
+}
+.f-input {
+  --at-apply: "dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-8 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-150";
+}
+.f-input--label {
+  --at-apply: "font-light text-xs focus:primary-text-300 focus:text-primary-400";
+}
+.f-input--error {
+  --at-apply: "text-error-400 text-xs font-light mt-2";
+}
+input:focus + label {
+  --at-apply: "text-primary-400 ease-linear transition-all duration-150 font-semibold ease-in";
+}
 </style>
