@@ -19,17 +19,14 @@ const onInput = (event: Event) => {
 </script>
 
 <template>
-  <div class="f-checkbox--wrapper">
-    <input v-model="value" type="checkbox" @change="onInput" :value="true" />
-    <label class="f-checkbox--label">{{ label }}</label>
+  <div inline-flex items-center>
+    <input
+      v-model="value"
+      type="checkbox"
+      bg="checked:primary-100"
+      @change="onInput"
+      :value="true"
+    />
+    <label mx-1 text-sm>{{ label }}</label>
   </div>
 </template>
-
-<style lang="sass" scoped>
-.f-checkbox
-  @apply checked:bg-primary-100
-.f-checkbox--wrapper
-  @apply inline-flex items-center
-.f-checkbox--label
-  @apply mx-1 text-sm
-</style>

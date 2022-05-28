@@ -1,13 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main class="f-content">
+  <main p="t-18 b-6 x-6 sm:x-24">
     <slot />
   </main>
 </template>
-
-<style scoped>
-.f-content {
-  --at-apply: "pt-18 pb-6 px-6 sm:px-24";
-}
-</style>

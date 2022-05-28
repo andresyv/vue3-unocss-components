@@ -133,7 +133,8 @@ const onKeydown = (e: KeyboardEvent) => {
       <input
         :id="inputId"
         type="text"
-        class="f-autocomplete w-full"
+        class="f-autocomplete"
+        w-full
         v-model="query"
         ref="autocomplete"
         placeholder="autocomplete"
@@ -184,13 +185,17 @@ const onKeydown = (e: KeyboardEvent) => {
   </div>
 </template>
 
-<style scoped lang="sass">
-.f-autocomplete--wrapper
-  @apply flex flex-col justify-between align-center my-4 first:mt-0 last:mb-0
-.f-autocomplete
-  @apply dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-10 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-100
-.f-autocomplete--label
-  @apply font-light text-xs focus:primary-text-300
-input:focus + label
-  @apply text-primary-400 ease-linear transition-all duration-100 font-semibold ease-in
+<style scoped>
+.f-autocomplete--wrapper {
+  --at-apply: "flex flex-col justify-between align-center my-4 first:mt-0 last:mb-0";
+}
+.f-autocomplete {
+  --at-apply: "dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-10 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-100";
+}
+.f-autocomplete--label {
+  --at-apply: "font-light text-xs focus:primary-text-300";
+}
+input:focus + label {
+  --at-apply: "text-primary-400 ease-linear transition-all duration-100 font-semibold ease-in";
+}
 </style>

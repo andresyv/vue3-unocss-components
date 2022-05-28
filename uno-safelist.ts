@@ -24,5 +24,4 @@ export default [
   ...range({ prefix: "xl:col-span", size: 12, startAt: 1 }),
   ...range({ prefix: "2xl:col-span", size: 12, startAt: 1 }),
   ...range({ prefix: "gap", size: 4, startAt: 1 }),
-  ..."bg-white bg-primary-300 bg-gradient-to-b".split(" "),
 ];

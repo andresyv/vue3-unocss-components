@@ -41,14 +41,18 @@ const imgClasses = computed(() => ({
   </div>
 </template>
 
-<style lang="sass">
-.f-image--wrapper
-  @apply overflow-hidden relative
-.f-image
-  @apply m-auto
-.f-image--overlay
-  @apply bg-gradient-to-t from-black to-transparent opacity-40 w-full h-full absolute top-0 z-0 pointer-events-none
+<style scoped>
+.f-image--wrapper {
+  --apply-at: "overflow-hidden relative";
+}
+.f-image {
+  --at-apply: "m-auto";
+}
+.f-image--overlay {
+  --at-apply: "bg-gradient-to-t from-black to-transparent opacity-40 w-full h-full absolute top-0 z-0 pointer-events-none";
+}
 
-.f-image--hover-animation
-  @apply hover:scale-110 transform-gpu ease-in duration-200
+.f-image--hover-animation {
+  --at-apply: "hover:scale-110 transform-gpu ease-in duration-200";
+}
 </style>
