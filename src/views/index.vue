@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import FGrid from "@/components/core/FGrid/FGrid.vue";
 import FGridItem from "@/components/core/FGridItem/FGridItem.vue";
 import FCard from "@/components/core/FCard/FCard.vue";
 import FButton from "@/components/core/FButton/FButton.vue";
-import FInput from "@/components/core/FInput/FInput.vue";
-import FForm from "@/components/core/FForm/FForm.vue";
 
-import { isRequired, isEmail } from "@/components/core/utils";
-import FCheckbox from "@/components/core/FCheckbox/FCheckbox.vue";
-import FAutocomplete from "@/components/core/FAutocomplete/FAutocomplete.vue";
+import LoginForm from "../components/Forms/LoginForm/LoginForm.vue";
+import type { LoginInput } from "@/types";
 
 const imgSrc =
   "https://images.unsplash.com/photo-1646936218493-d206c6284291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -17,41 +13,9 @@ const imgSrc2 =
   "https://images.unsplash.com/photo-1649044750195-c5d73df24521?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
 const imgSrc3 = "https://images.unsplash.com/photo-1649244451448-797144294226";
 
-const form = ref({
-  email: "",
-  password: "",
-  remember: false,
-});
-
-const emailRules = (value: string) => {
-  if (!isRequired(value)) {
-    return "Email is required";
-  }
-  if (!isEmail(value)) {
-    return "Email must be a valid email";
-  }
-  return true;
+const loginHandler = (form: LoginInput) => {
+  console.log("Login", form);
 };
-const passwordRules = (value: string) => {
-  if (!isRequired(value)) {
-    return "Password is required";
-  }
-  if (value.length < 5) {
-    return "Password be at least 5 characters long";
-  }
-  return true;
-};
-
-const onSubmit = (form: { email: string; password: string; state: string }) => {
-  console.log("Submit", form);
-};
-
-const states = [
-  { label: "Salamanca", value: "Salamanca" },
-  { label: "Valencia", value: "Valencia" },
-  { label: "Madrid", value: "Madrid" },
-  { label: "Barcelona", value: "Barcelona" },
-];
 </script>
 
 <template>
@@ -60,53 +24,7 @@ const states = [
       <h1>Forms</h1>
     </f-grid-item>
     <f-grid-item>
-      <f-card class="max-w-xl mx-auto my-2">
-        <template #header>
-          <img class="w-18 h-18" src="@/assets/logo.svg" alt="Vue Logo" />
-          <div class="pt-5 pb-2">
-            <span class="text-lg font-black">Sign in to Your Account</span>
-          </div>
-        </template>
-        <f-form @submit="onSubmit" :initial-values="{ email: 'demo@mail.com' }">
-          <f-input
-            label="Name"
-            v-model="form.email"
-            placeholder="mail@example.com"
-            :rules="emailRules"
-            name="email"
-            type="email"
-            autocomplete="email"
-          />
-          <f-input
-            label="Password"
-            v-model="form.password"
-            placeholder="*****"
-            name="password"
-            :rules="passwordRules"
-            type="password"
-            autocomplete="password"
-          />
-          <f-autocomplete
-            name="state"
-            placeholder="autocomplete"
-            label="Autocomplete"
-            :items="states"
-            clearable
-          />
-          <f-checkbox v-model="form.remember" label="Remember me" />
-          <div class="flex justify-between mt-10">
-            <a class="text-xs text-info-300 hover:underline" href="#"
-              >Don't have an account?</a
-            >
-            <a class="text-xs text-info-300 hover:underline" href="#"
-              >Forgot your password?</a
-            >
-          </div>
-          <div class="mt-10">
-            <f-button color="primary" block type="submit"> Submit </f-button>
-          </div>
-        </f-form>
-      </f-card>
+      <login-form class="mx-auto" @login="loginHandler" />
     </f-grid-item>
     <f-grid-item>
       <h1>Cards</h1>
