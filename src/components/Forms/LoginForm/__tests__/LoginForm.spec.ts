@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { describe, it, expect } from "vitest";
 
 import { mount } from "@vue/test-utils";
@@ -5,6 +6,7 @@ import flushPromises from "flush-promises";
 import waitForExpect from "wait-for-expect";
 
 import LoginForm from "../LoginForm.vue";
+import type { LoginInput } from "@/types";
 
 describe("LoginForm", () => {
   const wrapper = mount(LoginForm);
@@ -29,6 +31,10 @@ describe("LoginForm", () => {
     await flushPromises();
     await waitForExpect(() => {
       expect(wrapper.emitted()).toHaveProperty("login");
+      // @ts-ignore
+      const emittedForm = wrapper.emitted().login[0][0] as LoginInput;
+      expect(emittedForm.email).toBe("demo@mail.com");
+      expect(emittedForm.password).toBe("test-password");
     });
   });
 });
