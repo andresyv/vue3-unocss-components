@@ -43,7 +43,7 @@ describe("FAutocomplete", () => {
       textInput.setValue("");
       await flushPromises();
       await waitForExpect(() => {
-        expect(wrapper.find(".f-input--error").text()).toBe(
+        expect(wrapper.find(".f-autocomplete--error").text()).toBe(
           "Field test is required"
         );
       });

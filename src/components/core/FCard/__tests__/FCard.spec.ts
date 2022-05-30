@@ -35,35 +35,13 @@ describe("FCard", () => {
         },
       });
 
-      expect(wrapper.find(".f-card--title").text()).toContain(
-        "Test card title"
-      );
-      expect(wrapper.find(".f-card--actions").text()).toContain(
-        "Test card actions"
-      );
+      expect(wrapper.html()).toContain("Test card title");
+      expect(wrapper.html()).toContain("Test card actions");
     });
 
-    test("render title prop in header slot", () => {
+    test("render title prop", () => {
       const wrapper = mount(FCard, { props: { title: "Test card title" } });
-      expect(wrapper.find(".f-card--title").text()).toContain(
-        "Test card title"
-      );
-    });
-  });
-
-  describe("Component variants #layout #ui", () => {
-    test("component has primary class when variant is set to 'primary'", () => {
-      const wrapper = mount(FCard, {
-        props: { title: "Test card", variant: "primary" },
-      });
-      expect(wrapper.classes()).toContain("f-card--primary");
-    });
-
-    test("component has gradient class when variant is set to 'gradient'", () => {
-      const wrapper = mount(FCard, {
-        props: { title: "Test card", variant: "gradient" },
-      });
-      expect(wrapper.classes()).toContain("f-card--gradient");
+      expect(wrapper.html()).toContain("Test card title");
     });
   });
 
@@ -75,7 +53,7 @@ describe("FCard", () => {
         props: { title: "Test card", img },
       });
 
-      expect(wrapper.find(".f-card--image").exists()).toBeTruthy();
+      expect(wrapper.find("div [role=img]").exists()).toBeTruthy();
     });
 
     test("doesn't renders any image when img prop is undefined", () => {
@@ -83,7 +61,7 @@ describe("FCard", () => {
         props: { title: "Test card" },
       });
 
-      expect(wrapper.find(".f-card--image").exists()).toBeFalsy();
+      expect(wrapper.find("div[role=img]").exists()).toBeFalsy();
     });
   });
 });

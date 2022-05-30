@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useSlots } from "vue";
 import FCardImage from "./FCardImage.vue";
+
+const slots = useSlots();
 
 defineProps({
   title: { type: String },
@@ -27,7 +30,7 @@ defineProps({
     <div flex="1" p="y-4 x-2" text="slate-500 dark:white">
       <slot />
     </div>
-    <div p="t-4 b-2 x-2">
+    <div v-if="slots.actions" p="t-4 b-2 x-2">
       <slot name="actions" />
     </div>
   </div>

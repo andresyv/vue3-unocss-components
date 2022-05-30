@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 
 import { mount } from "@vue/test-utils";
-import FGrid from "@/components/FGrid/FGrid.vue";
+import FGrid from "../FGrid.vue";
 
 describe("FGrid", () => {
   expect(FGrid).toBeTruthy();
