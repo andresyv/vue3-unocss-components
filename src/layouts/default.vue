@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import FAppBar from "@/components/FAppBar/FAppBar.vue";
-import FFooter from "@/components/FFooter/FFooter.vue";
-import FContent from "@/components/FContent/FContent.vue";
+import FAppBar from "@/components/core/FAppBar/FAppBar.vue";
+import FFooter from "@/components/core/FFooter/FFooter.vue";
+import FContent from "@/components/core/FContent/FContent.vue";
 import { RouterView } from "vue-router";
-import FButton from "../components/FButton/FButton.vue";
+import FButton from "../components/core/FButton/FButton.vue";
 </script>
 
 <template>

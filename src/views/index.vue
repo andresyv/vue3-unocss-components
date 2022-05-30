@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import FGrid from "@/components/FGrid/FGrid.vue";
-import FGridItem from "@/components/FGridItem/FGridItem.vue";
-import FCard from "@/components/FCard/FCard.vue";
-import FButton from "@/components/FButton/FButton.vue";
-import FInput from "@/components/FInput/FInput.vue";
-import FForm from "@/components/FForm/FForm.vue";
+import FGrid from "@/components/core/FGrid/FGrid.vue";
+import FGridItem from "@/components/core/FGridItem/FGridItem.vue";
+import FCard from "@/components/core/FCard/FCard.vue";
+import FButton from "@/components/core/FButton/FButton.vue";
+import FInput from "@/components/core/FInput/FInput.vue";
+import FForm from "@/components/core/FForm/FForm.vue";
 
-import { isRequired, isEmail } from "@/components/utils";
-import FCheckbox from "../components/FCheckbox/FCheckbox.vue";
-import FAutocomplete from "../components/FAutocomplete/FAutocomplete.vue";
+import { isRequired, isEmail } from "@/components/core/utils";
+import FCheckbox from "@/components/core/FCheckbox/FCheckbox.vue";
+import FAutocomplete from "@/components/core/FAutocomplete/FAutocomplete.vue";
 
 const imgSrc =
   "https://images.unsplash.com/photo-1646936218493-d206c6284291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -53,7 +53,6 @@ const states = [
   { label: "Barcelona", value: "Barcelona" },
 ];
 </script>
-
 
 <template>
   <f-grid>

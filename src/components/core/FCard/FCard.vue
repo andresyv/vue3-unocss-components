@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FCardImage from "@/components/FCard/FCardImage.vue";
+import FCardImage from "./FCardImage.vue";
 
 defineProps({
   title: { type: String },

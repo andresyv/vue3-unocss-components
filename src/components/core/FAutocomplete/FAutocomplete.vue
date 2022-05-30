@@ -126,10 +126,8 @@ const onKeydown = (e: KeyboardEvent) => {
 
 <template>
   <div class="f-autocomplete--wrapper">
-    <div class="relative">
-      <label v-if="label" :for="inputId" class="f-autocomplete--label">{{
-        label
-      }}</label>
+    <label v-if="label" :for="inputId" class="f-autocomplete--label"
+      >{{ label }}
       <input
         :id="inputId"
         type="text"
@@ -143,20 +141,17 @@ const onKeydown = (e: KeyboardEvent) => {
         @focusout="showSuggestions = false"
         @keydown="onKeydown"
         @input="onInput"
-        v-on="validationListeners"
-      />
-      <span v-if="errorMessage" class="f-input--error">{{ errorMessage }}</span>
-
+        v-on="validationListeners" />
       <button
-        class="absolute w-5 h-5 rounded-full top-1/2 transform translate-y-2 right-3 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+        class="absolute items-center p-0.5 rounded-full top-1/2 transform translate-y-0.5 right-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
         @click.prevent="resetField()"
       >
-        <Close
-          v-if="clearable"
-          class="w-4 h-4 text-gray-500 dark:text-white my-auto"
-        />
-      </button>
-    </div>
+        <div class="i-tabler-x w-4 h-4 align-middle"></div></button
+    ></label>
+    <span v-if="errorMessage" class="f-autocomplete--error">{{
+      errorMessage
+    }}</span>
+
     <div class="relative">
       <Transition
         enter-active-class="transition-opacity duration-100 ease-out"
@@ -168,7 +163,7 @@ const onKeydown = (e: KeyboardEvent) => {
       >
         <ul
           v-if="showSuggestions"
-          class="absolute top-1 bg-white dark:bg-dark-base w-full z-10 rounded shadow-md max-h-48 overflow-y-auto transition ease-in-out delay-150"
+          class="absolute text-sm top-1 bg-white dark:bg-dark-base w-full z-10 rounded shadow-md max-h-48 overflow-y-auto transition ease-in-out delay-150"
         >
           <li
             class="text-slate-600 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-darkest px-4 py-2 cursor-pointer"
@@ -190,12 +185,12 @@ const onKeydown = (e: KeyboardEvent) => {
   --at-apply: "flex flex-col justify-between align-center my-4 first:mt-0 last:mb-0";
 }
 .f-autocomplete {
-  --at-apply: "dark:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-200 text-xs mt-2 h-10 px-3 rounded focus:outline-none focus:ring-3 focus:ring-primary-400 transform-gpu ease-linear transition-all duration-100";
+  --at-apply: "dark:text-white dark:focus:text-white dark:bg-dark-base dark:border-slate-700 border border-gray-400 text-xs mt-2 h-10 px-3 rounded focus:border-0 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:text-slate-600 transform-gpu ease-linear transition-all duration-100";
 }
 .f-autocomplete--label {
-  --at-apply: "font-light text-xs focus:primary-text-300";
+  --at-apply: "relative font-light text-xs focus-within:text-primary-300 ease-linear transition-all duration-100";
 }
-input:focus + label {
-  --at-apply: "text-primary-400 ease-linear transition-all duration-100 font-semibold ease-in";
+.f-autocomplete--error {
+  --at-apply: "text-error-400 text-xs font-light mt-3";
 }
 </style>
