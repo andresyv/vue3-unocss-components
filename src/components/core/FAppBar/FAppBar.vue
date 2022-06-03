@@ -38,7 +38,7 @@ const classes = computed(() => ({
   <nav class="f-app-bar" :class="classes">
     <slot name="icon"></slot>
     <span class="font-semibold text-primary text-lg mr-4">{{ title }}</span>
-    <div>
+    <div flex flex-row>
       <slot />
     </div>
     <div>

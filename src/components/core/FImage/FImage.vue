@@ -36,6 +36,7 @@ const imgClasses = computed(() => ({
       :style="styles"
       :src="src"
       :alt="alt"
+      v-bind="$attrs"
     />
     <div v-if="overlay" class="f-image--overlay"></div>
   </div>
