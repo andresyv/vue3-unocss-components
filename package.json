@@ -15,6 +15,7 @@
   "dependencies": {
     "@vuelidate/core": "^2.0.0-alpha.40",
     "@vuelidate/validators": "^2.0.0-alpha.28",
+    "@vueuse/core": "^8.6.0",
     "pinia": "^2.0.13",
     "vee-validate": "^4.5.11",
     "vue": "^3.2.31",
