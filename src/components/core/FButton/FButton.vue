@@ -49,7 +49,7 @@ const classes = computed(() => ({
   --at-apply: "rounded text-sm font-base py-1 px-4 uppercase";
 }
 .f-button--icon {
-  --at-apply: "flex justify-center items-center rounded-full !bg-transparent !dark:bg-transparent !dark:hover:bg-dark-darkest !hover:bg-gray-200 !shadow-none !p-2 w-10 h-10";
+  --at-apply: "flex justify-center items-center rounded-full !bg-transparent !dark:bg-transparent !dark:hover:bg-dark-darkest !hover:bg-gray-100 !shadow-none !p-2 w-10 h-10";
 }
 .f-button--default {
   --at-apply: "bg-gray-200 hover:bg-gray-300 shadow dark:bg-dark";

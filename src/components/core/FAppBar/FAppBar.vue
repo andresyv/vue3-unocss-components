@@ -9,6 +9,7 @@ const props = defineProps({
   fixed: { type: Boolean, default: false },
   dark: { type: Boolean, default: false },
   variant: { type: String as PropType<FAppBarVariants>, default: "default" },
+  scrolled: { type: Boolean },
 });
 const scrollPosition = ref<number>(0);
 
@@ -30,7 +31,7 @@ const classes = computed(() => ({
   "f-app-bar--accent": props.variant === "accent",
   "f-app-bar--transparent": props.variant === "transparent",
   "f-app-bar--dark": props.dark,
-  "f-app-bar-scrolled": scrollPosition.value > 56,
+  "f-app-bar-scrolled": scrollPosition.value > 56 || props.scrolled,
 }));
 </script>
 

@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <route lang="yaml">
 meta:
@@ -7,5 +6,5 @@ meta:
 </route>
 
 <template>
-<h1>404 Not found</h1>
+  <h1>404 Not found</h1>
 </template>

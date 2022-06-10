@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
 
 const props = defineProps({
-  // @ts-ignore
-  ...RouterLink.props,
+  to: { type: String, required: true },
   inactiveClass: String,
 });
 
@@ -22,6 +20,7 @@ const isExternalLink = computed(
     v-else
     v-bind="$props"
     custom
+    :to="to"
     v-slot="{ isActive, href, navigate }"
   >
     <a
@@ -39,9 +38,9 @@ const isExternalLink = computed(
 
 <style scoped>
 .f-nav-link {
-  --at-apply: "bg-transparent rounded-lg px-2 py-1 hover:bg-slate-200 dark:hover:bg-dark-darkest flex items-center";
+  --at-apply: "bg-transparent rounded-lg px-2 py-1 hover:bg-slate-200 dark:hover:bg-primary-300 sm:dark:hover:bg-dark-darkest dark:hover:text-white sm:dark:hover:text-white flex items-center transition-all transform-gpu duration-150";
 }
 .f-nav-link--active {
-  --at-apply: "bg-slate-200 dark:bg-dark-darkest text-primary-300 hover:bg-primary-400 hover:text-white";
+  --at-apply: "bg-primary-300 sm:bg-slate-200 sm:dark:bg-dark-darkest dark:bg-primary-300 sm:text-primary-300 text-white hover:dark:text-white hover:text-white hover:dark:bg-primary-400";
 }
 </style>
