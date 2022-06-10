@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 
 import "@unocss/reset/tailwind.css";
 import "uno.css";
+import "@/assets/styles/transitions.css";
 
 import App from "./App.vue";
 import router from "./router";
