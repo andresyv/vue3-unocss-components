@@ -4,7 +4,7 @@ import type { User } from "@/types";
 
 import FMenu from "@/components/core/FMenu/FMenu.vue";
 import FAvatar from "@/components/core/FAvatar/FAvatar.vue";
-import FList from "../core/FList/FList.vue";
+import FList from "@/components/core/FList/FList.vue";
 import FListItem from "@/components/core/FList/FListItem.vue";
 
 defineProps({
