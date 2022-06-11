@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import FAvatar from "@/components/core/FAvatar/FAvatar.vue";
 import FAppBar from "@/components/core/FAppBar/FAppBar.vue";
 import FFooter from "@/components/core/FFooter/FFooter.vue";
 import FContent from "@/components/core/FContent/FContent.vue";
@@ -9,8 +10,10 @@ import FButton from "@/components/core/FButton/FButton.vue";
 import config from "@/lib/app-config";
 import FNavLink from "@/components/core/FNavLink/FNavLink.vue";
 import { useTailwindBreakpoints } from "@/composables";
-import FMenu from "../components/core/FMenu/FMenu.vue";
-import FImage from "../components/core/FImage/FImage.vue";
+import FMenu from "@/components/core/FMenu/FMenu.vue";
+import FListItem from "@/components/core/FList/FListItem.vue";
+import AppConfig from "@/lib/app-config";
+import UserMenu from "../components/UserMenu/UserMenu.vue";
 
 const menu = ref<boolean>(false);
 const { sm } = useTailwindBreakpoints();
@@ -19,6 +22,8 @@ const routes = [
   { to: "/", icon: "i-tabler-home", name: "Home" },
   { to: "/dashboard", icon: "i-tabler-layout-dashboard", name: "Dashboard" },
 ];
+
+const [user] = AppConfig.users;
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const routes = [
         </f-nav-link>
       </div>
       <template #actions>
-        <f-menu v-model="menu" v-if="sm">
+        <f-menu v-model="menu" v-if="sm" items-classes="w-full">
           <template #activator="{ on }">
             <f-button rounded icon @click="on.click">
               <div class="i-tabler-menu-2 w-5 h-5"></div>
@@ -48,31 +53,25 @@ const routes = [
                 {{ route.name }}
               </f-nav-link>
             </div>
-            <div flex flex-row w-full py-2 items-center>
-              <div px-2 pr-2 py-1>
-                <f-image
-                  class="rounded-full shadow-md"
-                  src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/c1/c155cb4a8121fd7b2a1298c923e242aed793a7d7.jpg"
-                  alt="avatar"
-                  width="45px"
-                  height="45px"
+            <f-list-item tag="div">
+              <template #prefix>
+                <f-avatar
+                  :src="user.avatar"
+                  :alt="`${user.name} avatar`"
+                  :size="40"
                 />
-              </div>
-              <div flex-1 px-1>
-                <div>Andrés Yepes</div>
-                <div text="xs dark:slate-300 ">andresyv93@outlook.es</div>
-              </div>
-              <div px-3>
+              </template>
+              <div class="text-sm">{{ user.name }}</div>
+              <div class="text-xs text-slate-400">{{ user.email }}</div>
+              <template #suffix>
                 <f-button rounded icon>
                   <div class="i-tabler-logout w-5 h-5"></div>
                 </f-button>
-              </div>
-            </div>
+              </template>
+            </f-list-item>
           </template>
         </f-menu>
-        <f-button v-else rounded icon>
-          <div class="i-tabler-logout w-5 h-5"></div>
-        </f-button>
+        <user-menu :user="user" v-else />
       </template>
     </f-app-bar>
     <f-content>

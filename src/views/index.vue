@@ -4,11 +4,11 @@ import FGridItem from "@/components/core/FGridItem/FGridItem.vue";
 import FCard from "@/components/core/FCard/FCard.vue";
 import FButton from "@/components/core/FButton/FButton.vue";
 
-import LoginForm from "../components/Forms/LoginForm/LoginForm.vue";
+import LoginForm from "@/components/Forms/LoginForm/LoginForm.vue";
 import type { LoginInput } from "@/types";
-import FList from "../components/core/FList/FList.vue";
-import FListItem from "../components/core/FList/FListItem.vue";
-import FAvatar from "../components/core/FAvatar/FAvatar.vue";
+import FList from "@/components/core/FList/FList.vue";
+import FListItem from "@/components/core/FList/FListItem.vue";
+import FAvatar from "@/components/core/FAvatar/FAvatar.vue";
 import AppConfig from "@/lib/app-config";
 
 const imgSrc =
@@ -33,8 +33,8 @@ const { users } = AppConfig;
     </f-grid-item>
     <f-grid-item>
       <h2>List</h2>
-      <f-list mt-4 title="users">
-        <f-list-item v-for="user in users" :key="user.id">
+      <f-list mt-4 p-2 title="users">
+        <f-list-item v-for="user in users" :key="user.id" tag="div" bordered>
           <template #prefix>
             <f-avatar
               :src="user.avatar"

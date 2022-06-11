@@ -13,6 +13,6 @@ defineProps({
 </template>
 <style scoped>
 .f-list {
-  --at-apply: "py-3 px-2 bg-white dark:bg-dark-darkest rounded-md shadow space-y-1";
+  --at-apply: "bg-white dark:bg-dark-darkest rounded-md shadow space-y-1";
 }
 </style>

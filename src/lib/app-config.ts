@@ -1,4 +1,6 @@
 import { nanoid } from "nanoid";
+import type { User } from "@/types";
+
 export default {
   appTitle: "Freya ui 🍃",
   users: [
@@ -23,5 +25,5 @@ export default {
       avatar:
         "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/9b/9b6a868f5e764b94daa60b0d5a818c3a116298d6.jpg",
     },
-  ],
+  ] as User[],
 };
