@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, onBeforeUnmount } from "vue";
+import { computed, ref } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
 
 const props = defineProps({
   src: { type: String, required: true },
@@ -10,8 +11,13 @@ const props = defineProps({
 });
 
 const imgSrc = ref<string>(props.lazy ? "" : props.src);
-const imageRef = ref();
-const observer = ref();
+const imageRef = ref(null);
+
+useIntersectionObserver(imageRef, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    imgSrc.value = props.src;
+  }
+});
 
 const styles = computed(
   () =>
@@ -19,24 +25,6 @@ const styles = computed(
       typeof props.height === "number" ? `${props.height}px` : props.height
     }`
 );
-
-onMounted(() => {
-  if (props.lazy) {
-    observer.value = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        imgSrc.value = props.src;
-        observer.value.disconnect();
-      }
-    });
-    observer.value.observe(imageRef.value);
-  }
-});
-
-onBeforeUnmount(() => {
-  if (props.lazy && observer.value) {
-    observer.value.disconnect();
-  }
-});
 </script>
 <template>
   <div overflow="hidden" relative rounded-lg bg="gray-200" ref="imageRef">
