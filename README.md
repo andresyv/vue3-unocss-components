@@ -1,3 +1,3 @@
-# vue3-tailwind-template
+# vue3-unocss-vite-template
 
 Custom UI components for Vue 3
