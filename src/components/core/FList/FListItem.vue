@@ -22,6 +22,6 @@ const slots = useSlots();
 </template>
 <style scoped>
 .f-list-item {
-  --at-apply: "flex flex-row items-center bg-white dark:bg-dark-darkest border-b border-b-slate-200 last:border-b-0 p-1";
+  --at-apply: "flex flex-row items-center bg-white dark:bg-dark-darkest border-b border-b-slate-200 dark:border-b-dark last:border-b-0 p-1";
 }
 </style>

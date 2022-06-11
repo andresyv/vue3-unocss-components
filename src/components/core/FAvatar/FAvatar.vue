@@ -10,11 +10,24 @@ defineProps({
 </script>
 
 <template>
-  <f-image
-    :src="src ?? '/images/user-placeholder.png'"
-    :alt="alt"
-    :width="size"
-    :height="size"
+  <div
+    class="f-avatar"
+    :style="{ width: `${size}px`, height: `${size}px` }"
     :class="{ shadow: !tile, 'rounded-full': !tile }"
-  />
+  >
+    <f-image
+      :src="src ?? '/images/user-placeholder.png'"
+      :alt="alt"
+      :width="size"
+      :height="size"
+      animated
+      overlay
+    />
+  </div>
 </template>
+
+<style scoped>
+.f-avatar {
+  --at-apply: "overflow-hidden";
+}
+</style>

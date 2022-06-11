@@ -10,7 +10,6 @@ const props = defineProps({
   width: { type: [String, Number], default: 300 },
   height: { type: [String, Number], default: 300 },
   animated: { type: Boolean, default: false },
-  overlay: { type: Boolean, default: false },
   aspectRatio: { type: String as PropType<Ratio>, default: "auto" },
 });
 
@@ -38,7 +37,6 @@ const imgClasses = computed(() => ({
       :alt="alt"
       v-bind="$attrs"
     />
-    <div v-if="overlay" class="f-image--overlay"></div>
   </div>
 </template>
 
@@ -48,9 +46,6 @@ const imgClasses = computed(() => ({
 }
 .f-image {
   --at-apply: "m-auto";
-}
-.f-image--overlay {
-  --at-apply: "bg-gradient-to-t from-black to-transparent opacity-40 w-full h-full absolute top-0 z-0 pointer-events-none";
 }
 
 .f-image--hover-animation {
