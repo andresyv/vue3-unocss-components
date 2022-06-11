@@ -14,13 +14,14 @@ defineProps({
   },
 });
 
-const onLogout = () => alert("logout");
+const onLogout = (attrs: any) => console.log("logout", attrs);
 </script>
 
 <template>
   <f-menu items-classes="w-42 !px-1">
     <template #activator="{ on }">
       <f-avatar
+        class="cursor-pointer"
         :src="user.avatar"
         :alt="`${user.name} avatar`"
         :size="40"
@@ -35,7 +36,7 @@ const onLogout = () => alert("logout");
           </template>
           Profile
         </f-list-item>
-        <f-list-item @click="onLogout">
+        <f-list-item class="!px-2" hover @click="onLogout($attrs)">
           <template #prefix>
             <i class="i-tabler-logout w-4 h-4"></i>
           </template>

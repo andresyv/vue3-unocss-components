@@ -6,6 +6,7 @@ const props = defineProps({
   tag: { type: String, default: "li" },
   bordered: { type: Boolean, default: false },
   to: { type: String },
+  hover: { type: Boolean, default: false },
 });
 const emit = defineEmits(["click"]);
 const slots = useSlots();
@@ -30,6 +31,7 @@ const onClick = computed(() => {
       'f-list-item--nav-link': !!to,
       'f-list-item--nav-link--active': !!to && route.path === to,
       'cursor-pointer': !!$attrs.onClick || !!to,
+      'f-list-item--hover': props.hover,
     }"
     @click="onClick"
   >
@@ -47,6 +49,9 @@ const onClick = computed(() => {
 <style scoped>
 .f-list-item {
   --at-apply: "flex flex-row items-center bg-white dark:bg-dark-darkest p-1";
+}
+.f-list-item--hover {
+  --at-apply: "hover:bg-gray-200 hover:dark:bg-primary-300 rounded-md cursor-pointer";
 }
 .f-list-item--prefix {
   --at-apply: "flex";

@@ -53,6 +53,9 @@ const [user] = AppConfig.users;
                 {{ route.name }}
               </f-nav-link>
             </div>
+            <div
+              class="w-full border-t border-t-slate-200 dark:border-t-dark-base mt-2 mb-1"
+            ></div>
             <f-list-item tag="div">
               <template #prefix>
                 <f-avatar
