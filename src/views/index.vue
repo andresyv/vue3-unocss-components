@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import FGrid from "@/components/core/FGrid/FGrid.vue";
 import FGridItem from "@/components/core/FGridItem/FGridItem.vue";
 import FCard from "@/components/core/FCard/FCard.vue";
 import FButton from "@/components/core/FButton/FButton.vue";
+import FLazy from "@/components/core/FLazy/FLazy.vue";
 
 import LoginForm from "@/components/Forms/LoginForm/LoginForm.vue";
 import type { LoginInput } from "@/types";
@@ -10,6 +12,8 @@ import FList from "@/components/core/FList/FList.vue";
 import FListItem from "@/components/core/FList/FListItem.vue";
 import FAvatar from "@/components/core/FAvatar/FAvatar.vue";
 import AppConfig from "@/lib/app-config";
+
+const isIntersecting = ref<boolean>(false);
 
 const imgSrc =
   "https://images.unsplash.com/photo-1646936218493-d206c6284291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
@@ -68,11 +72,20 @@ const { users } = AppConfig;
       </f-card>
     </f-grid-item>
     <f-grid-item :md="6">
-      <f-card :img="imgSrc3" title="card test" variant="primary">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus,
-        ligula id rutrum iaculis, libero leo consequat nisi, quis sollicitudin
-        orci augue nec justo.
-      </f-card>
+      <f-lazy v-model="isIntersecting">
+        <transition name="scale-in-ver-top">
+          <f-card
+            v-if="isIntersecting"
+            :img="imgSrc3"
+            title="card test"
+            variant="primary"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+            dapibus, ligula id rutrum iaculis, libero leo consequat nisi, quis
+            sollicitudin orci augue nec justo.
+          </f-card>
+        </transition>
+      </f-lazy>
     </f-grid-item>
   </f-grid>
 </template>
