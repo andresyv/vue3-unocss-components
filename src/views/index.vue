@@ -72,7 +72,7 @@ const { users } = AppConfig;
       </f-card>
     </f-grid-item>
     <f-grid-item :md="6">
-      <f-lazy v-model="isIntersecting">
+      <f-lazy v-model="isIntersecting" stop-at-first>
         <transition name="scale-in-ver-top">
           <f-card
             v-if="isIntersecting"

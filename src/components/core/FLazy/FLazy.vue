@@ -7,7 +7,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  stopAtFirst: { type: Boolean, default: false },
+  stopAtFirst: { type: Boolean, default: true },
   tag: { type: String, default: "div" },
 });
 const emit = defineEmits(["update:modelValue"]);
